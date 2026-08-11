@@ -1,0 +1,267 @@
+openapi: 3.0.3
+info:
+  title: Notes API
+  version: 1.0.0
+  description: REST API для создания, просмотра, редактирования и удаления заметок.
+servers:
+  - url: /api
+    description: Текущий сервер
+tags:
+  - name: Notes
+    description: Операции с заметками
+paths:
+  /notes:
+    get:
+      tags: [Notes]
+      summary: Получить список заметок
+      operationId: listNotes
+      parameters:
+        - name: per_page
+          in: query
+          description: Количество заметок на странице
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 12
+          example: 20
+      responses:
+        '200':
+          description: Пагинированный список заметок
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteCollection'
+              example:
+                data:
+                  - id: 1
+                    title: План проекта
+                    content: Завершить API и документацию
+                    created_at: '2026-08-11T10:00:00.000000Z'
+                    updated_at: '2026-08-11T10:30:00.000000Z'
+                links:
+                  first: /api/notes?page=1
+                  last: /api/notes?page=1
+                  prev: null
+                  next: null
+                meta:
+                  current_page: 1
+                  from: 1
+                  last_page: 1
+                  per_page: 20
+                  to: 1
+                  total: 1
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    post:
+      tags: [Notes]
+      summary: Создать заметку
+      operationId: createNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteInput'
+            example:
+              title: План проекта
+              content: Завершить API и документацию
+      responses:
+        '201':
+          description: Заметка создана
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteResponse'
+              example:
+                data:
+                  id: 1
+                  title: План проекта
+                  content: Завершить API и документацию
+                  created_at: '2026-08-11T10:00:00.000000Z'
+                  updated_at: '2026-08-11T10:00:00.000000Z'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /notes/{note}:
+    parameters:
+      - $ref: '#/components/parameters/NoteId'
+    get:
+      tags: [Notes]
+      summary: Получить одну заметку
+      operationId: showNote
+      responses:
+        '200':
+          description: Заметка найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteResponse'
+              example:
+                data:
+                  id: 1
+                  title: План проекта
+                  content: Завершить API и документацию
+                  created_at: '2026-08-11T10:00:00.000000Z'
+                  updated_at: '2026-08-11T10:30:00.000000Z'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [Notes]
+      summary: Полностью обновить заметку
+      operationId: replaceNote
+      requestBody:
+        $ref: '#/components/requestBodies/NotePayload'
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdatedNote'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    patch:
+      tags: [Notes]
+      summary: Обновить заметку
+      operationId: updateNote
+      requestBody:
+        $ref: '#/components/requestBodies/NotePayload'
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdatedNote'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      tags: [Notes]
+      summary: Удалить заметку
+      operationId: deleteNote
+      responses:
+        '204':
+          description: Заметка удалена
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    NoteId:
+      name: note
+      in: path
+      required: true
+      description: Числовой идентификатор заметки
+      schema:
+        type: integer
+        minimum: 1
+      example: 1
+  requestBodies:
+    NotePayload:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NoteInput'
+          example:
+            title: Обновлённый план
+            content: Проверить Swagger UI
+  responses:
+    UpdatedNote:
+      description: Заметка обновлена
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NoteResponse'
+          example:
+            data:
+              id: 1
+              title: Обновлённый план
+              content: Проверить Swagger UI
+              created_at: '2026-08-11T10:00:00.000000Z'
+              updated_at: '2026-08-11T11:00:00.000000Z'
+    NotFound:
+      description: Заметка не найдена
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: No query results for model [App\Models\Note] 999999
+    ValidationError:
+      description: Переданные данные не прошли валидацию
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: The title field is required.
+            errors:
+              title:
+                - The title field is required.
+  schemas:
+    NoteInput:
+      type: object
+      required: [title]
+      properties:
+        title:
+          type: string
+          maxLength: 255
+          example: План проекта
+        content:
+          type: string
+          nullable: true
+          maxLength: 10000
+          example: Завершить API и документацию
+    Note:
+      type: object
+      required: [id, title, content, created_at, updated_at]
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          maxLength: 255
+          example: План проекта
+        content:
+          type: string
+          nullable: true
+          maxLength: 10000
+          example: Завершить API и документацию
+        created_at:
+          type: string
+          format: date-time
+          example: '2026-08-11T10:00:00.000000Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2026-08-11T10:30:00.000000Z'
+    NoteResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          $ref: '#/components/schemas/Note'
+    NoteCollection:
+      type: object
+      required: [data, links, meta]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Note'
+        links:
+          type: object
+          additionalProperties: true
+        meta:
+          type: object
+          additionalProperties: true
+    ErrorResponse:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          example: The given data was invalid.
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string

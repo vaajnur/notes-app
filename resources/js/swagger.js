@@ -1,0 +1,10 @@
+import SwaggerUI from 'swagger-ui-dist/swagger-ui-es-bundle.js';
+import 'swagger-ui-dist/swagger-ui.css';
+
+SwaggerUI({
+    dom_id: '#swagger-ui',
+    url: '/docs/openapi.yaml',
+    deepLinking: true,
+    displayRequestDuration: true,
+    tryItOutEnabled: true,
+});
