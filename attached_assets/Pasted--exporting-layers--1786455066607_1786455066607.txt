@@ -1,0 +1,211 @@
+ => => exporting layers                                                                                            1.0s
+[+] Running 9/9image sha256:02b79bd3aaf31867b4243fb26ad165cf2ecf627e034ed2f4fbccf90db1fa5383                       0.1s
+ ✔ Service frontend                 Built                                                                         54.8s
+ ✔ Service app                      Built                                                                         61.6s
+ ✔ Network notes-app_default        Created                                                                        0.1s
+ ✔ Volume "notes-app_mysql-data"    Created                                                                        0.0s
+ ✔ Volume "notes-app_node-modules"  Created                                                                        0.1s
+ ✔ Container notes-app-frontend-1   Created                                                                        6.2s
+ ✔ Container notes-app-db-1         Created                                                                        5.2s
+ ✔ Container notes-app-app-1        Created                                                                        1.9s
+ ✔ Container notes-app-nginx-1      Created                                                                        0.4s
+Attaching to app-1, db-1, frontend-1, nginx-1
+db-1        | 2026-08-11 13:25:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.11-1.el9 started.
+frontend-1  |
+frontend-1  | > dev
+frontend-1  | > vite --host 0.0.0.0 --configLoader runner
+frontend-1  |
+db-1        | 2026-08-11 13:25:19+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+db-1        | 2026-08-11 13:25:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.11-1.el9 started.
+db-1        | 2026-08-11 13:25:19+00:00 [Note] [Entrypoint]: Initializing database files
+db-1        | 2026-08-11T13:25:19.744146Z 0 [System] [MY-015017] [Server] MySQL Server Initialization - start.
+db-1        | 2026-08-11T13:25:19.744956Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.4.11) initializing of server in progress as process 80
+db-1        | 2026-08-11T13:25:19.893037Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+frontend-1  |
+frontend-1  |   VITE v6.4.3  ready in 319 ms
+frontend-1  |
+frontend-1  |   ➜  Local:   http://localhost:5173/
+frontend-1  |   ➜  Network: http://172.18.0.2:5173/
+frontend-1  |
+frontend-1  |   LARAVEL v13.24.0  plugin v1.3.0
+frontend-1  |
+frontend-1  |   ➜  APP_URL: undefined
+db-1        | 2026-08-11T13:25:24.712718Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+db-1        | 2026-08-11T13:25:36.185668Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+db-1        | 2026-08-11T13:25:40.692764Z 0 [System] [MY-015018] [Server] MySQL Server Initialization - end.
+db-1        | 2026-08-11 13:25:40+00:00 [Note] [Entrypoint]: Database files initialized
+db-1        | 2026-08-11 13:25:40+00:00 [Note] [Entrypoint]: Starting temporary server
+db-1        | 2026-08-11T13:25:40.823865Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+db-1        | 2026-08-11T13:25:41.005429Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.4.11) starting as process 150
+db-1        | 2026-08-11T13:25:41.013161Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+db-1        | 2026-08-11T13:25:41.259985Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+db-1        | 2026-08-11T13:25:41.498450Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+db-1        | 2026-08-11T13:25:41.498481Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+db-1        | 2026-08-11T13:25:41.502983Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+db-1        | 2026-08-11T13:25:41.523303Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+db-1        | 2026-08-11T13:25:41.523353Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.4.11'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+db-1        | 2026-08-11 13:25:41+00:00 [Note] [Entrypoint]: Temporary server started.
+db-1        | '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+db-1        | 2026-08-11 13:25:42+00:00 [Note] [Entrypoint]: Creating database notes
+db-1        | 2026-08-11 13:25:42+00:00 [Note] [Entrypoint]: Creating user notes
+db-1        | 2026-08-11 13:25:42+00:00 [Note] [Entrypoint]: Giving user notes access to schema notes
+db-1        |
+db-1        | 2026-08-11 13:25:42+00:00 [Note] [Entrypoint]: Stopping temporary server
+db-1        | 2026-08-11T13:25:42.674350Z 13 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.4.11).
+db-1        | 2026-08-11T13:25:45.532824Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.4.11)  MySQL Community Server - GPL.
+db-1        | 2026-08-11T13:25:45.532846Z 0 [System] [MY-015016] [Server] MySQL Server - end.
+db-1        | 2026-08-11 13:25:46+00:00 [Note] [Entrypoint]: Temporary server stopped
+db-1        |
+db-1        | 2026-08-11 13:25:46+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+db-1        |
+db-1        | 2026-08-11T13:25:46.121075Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+db-1        | 2026-08-11T13:25:46.296887Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.4.11) starting as process 1
+db-1        | 2026-08-11T13:25:46.308564Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+db-1        | 2026-08-11T13:25:46.505732Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+db-1        | 2026-08-11T13:25:46.727903Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+db-1        | 2026-08-11T13:25:46.727937Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+db-1        | 2026-08-11T13:25:46.731528Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+db-1        | 2026-08-11T13:25:46.753130Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+db-1        | 2026-08-11T13:25:46.753172Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.4.11'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+app-1       |
+app-1       | --------------------------------------------------------------------
+app-1       |  ____                             ____  _     _        _   _
+app-1       | / ___|  ___ _ ____   _____ _ __  / ___|(_) __| | ___  | | | |_ __
+app-1       | \___ \ / _ \  __\ \ / / _ \  __| \___ \| |/ _` |/ _ \ | | | |  _ \
+app-1       |  ___) |  __/ |   \ V /  __/ |     ___) | | (_| |  __/ | |_| | |_) |
+app-1       | |____/ \___|_|    \_/ \___|_|    |____/|_|\__,_|\___|  \___/| .__/
+app-1       |                                                             |_|
+app-1       |
+app-1       | Brought to you by serversideup.net
+app-1       | --------------------------------------------------------------------
+app-1       |
+app-1       | 📚 Documentation: https://serversideup.net/php/docs
+app-1       | 💬 Get Help: https://serversideup.net/php/community
+app-1       | 🙌 Sponsor: https://serversideup.net/sponsor
+app-1       |
+app-1       | -------------------------------------
+app-1       | ℹ️ Container Information
+app-1       | -------------------------------------
+app-1       | 📦 Versions
+app-1       | • Image:         v4.5.1-30894417718
+app-1       | • PHP:           8.4.24
+app-1       | • OS:            Debian GNU/Linux 13 (trixie)
+app-1       |
+app-1       | 👤 Container User
+app-1       | • User:          www-data
+app-1       | • UID:           33
+app-1       | • GID:           33
+app-1       |
+app-1       | ⚡ Performance
+app-1       | • OPcache:       ❌ Disabled
+app-1       | • Memory Limit:  256M
+app-1       | • Upload Limit:  100M
+app-1       |
+app-1       | 🔄 Runtime
+app-1       | • Docker CMD:     /init
+app-1       |
+app-1       | 👉 [NOTICE]: Improve PHP performance by setting PHP_OPCACHE_ENABLE=1 (recommended for production).
+app-1       | ℹ️ NOTICE (generate-ssl): SSL mode is off, so we won't generate a self-signed SSL key pair.
+app-1       | (init-webserver-config): Processing /etc/nginx/nginx.conf.template → /etc/nginx/nginx.conf...
+app-1       | (init-webserver-config): Processing /etc/nginx/site-opts.d/http.conf.template → /etc/nginx/site-opts.d/http.conf...
+app-1       | (init-webserver-config): Processing /etc/nginx/site-opts.d/https.conf.template → /etc/nginx/site-opts.d/https.conf...
+app-1       | (init-webserver-config): Processing /etc/nginx/sites-available/ssl-full.template → /etc/nginx/sites-available/ssl-full...
+app-1       | ℹ️ NOTICE (init-webserver-config): Enabling NGINX site with SSL "off"...
+app-1       | ❌ laravel-automations: Could not detect Laravel installation.
+app-1       | ℹ️  Check that the application is installed in /var/www/html
+app-1 exited with code 0
+app-1       |
+app-1       | --------------------------------------------------------------------
+app-1       |  ____                             ____  _     _        _   _
+app-1       | / ___|  ___ _ ____   _____ _ __  / ___|(_) __| | ___  | | | |_ __
+app-1       | \___ \ / _ \  __\ \ / / _ \  __| \___ \| |/ _` |/ _ \ | | | |  _ \
+app-1       |  ___) |  __/ |   \ V /  __/ |     ___) | | (_| |  __/ | |_| | |_) |
+app-1       | |____/ \___|_|    \_/ \___|_|    |____/|_|\__,_|\___|  \___/| .__/
+app-1       |                                                             |_|
+app-1       |
+app-1       | Brought to you by serversideup.net
+app-1       | --------------------------------------------------------------------
+app-1       |
+app-1       | 📚 Documentation: https://serversideup.net/php/docs
+app-1       | 💬 Get Help: https://serversideup.net/php/community
+app-1       | 🙌 Sponsor: https://serversideup.net/sponsor
+app-1       |
+app-1       | -------------------------------------
+app-1       | ℹ️ Container Information
+app-1       | -------------------------------------
+app-1       | 📦 Versions
+app-1       | • Image:         v4.5.1-30894417718
+app-1       | • PHP:           8.4.24
+app-1       | • OS:            Debian GNU/Linux 13 (trixie)
+app-1       |
+app-1       | 👤 Container User
+app-1       | • User:          www-data
+app-1       | • UID:           33
+app-1       | • GID:           33
+app-1       |
+app-1       | ⚡ Performance
+app-1       | • OPcache:       ❌ Disabled
+app-1       | • Memory Limit:  256M
+app-1       | • Upload Limit:  100M
+app-1       |
+app-1       | 🔄 Runtime
+app-1       | • Docker CMD:     /init
+app-1       |
+app-1       | 👉 [NOTICE]: Improve PHP performance by setting PHP_OPCACHE_ENABLE=1 (recommended for production).
+app-1       | ℹ️ NOTICE (generate-ssl): SSL mode is off, so we won't generate a self-signed SSL key pair.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/nginx.conf already exists, so we'll use the existing file.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/site-opts.d/http.conf already exists, so we'll use the existing file.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/site-opts.d/https.conf already exists, so we'll use the existing file.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/sites-available/ssl-full already exists, so we'll use the existing file.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/conf.d/default.conf already exists, so we'll use the provided configuration.
+app-1       | ❌ laravel-automations: Could not detect Laravel installation.
+app-1       | ℹ️  Check that the application is installed in /var/www/html
+app-1 exited with code 0
+app-1       |
+app-1       | --------------------------------------------------------------------
+app-1       |  ____                             ____  _     _        _   _
+app-1       | / ___|  ___ _ ____   _____ _ __  / ___|(_) __| | ___  | | | |_ __
+app-1       | \___ \ / _ \  __\ \ / / _ \  __| \___ \| |/ _` |/ _ \ | | | |  _ \
+app-1       |  ___) |  __/ |   \ V /  __/ |     ___) | | (_| |  __/ | |_| | |_) |
+app-1       | |____/ \___|_|    \_/ \___|_|    |____/|_|\__,_|\___|  \___/| .__/
+app-1       |                                                             |_|
+app-1       |
+app-1       | Brought to you by serversideup.net
+app-1       | --------------------------------------------------------------------
+app-1       |
+app-1       | 📚 Documentation: https://serversideup.net/php/docs
+app-1       | 💬 Get Help: https://serversideup.net/php/community
+app-1       | 🙌 Sponsor: https://serversideup.net/sponsor
+app-1       |
+app-1       | -------------------------------------
+app-1       | ℹ️ Container Information
+app-1       | -------------------------------------
+app-1       | 📦 Versions
+app-1       | • Image:         v4.5.1-30894417718
+app-1       | • PHP:           8.4.24
+app-1       | • OS:            Debian GNU/Linux 13 (trixie)
+app-1       |
+app-1       | 👤 Container User
+app-1       | • User:          www-data
+app-1       | • UID:           33
+app-1       | • GID:           33
+app-1       |
+app-1       | ⚡ Performance
+app-1       | • OPcache:       ❌ Disabled
+app-1       | • Memory Limit:  256M
+app-1       | • Upload Limit:  100M
+app-1       |
+app-1       | 🔄 Runtime
+app-1       | • Docker CMD:     /init
+app-1       |
+app-1       | 👉 [NOTICE]: Improve PHP performance by setting PHP_OPCACHE_ENABLE=1 (recommended for production).
+app-1       | ℹ️ NOTICE (generate-ssl): SSL mode is off, so we won't generate a self-signed SSL key pair.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/nginx.conf already exists, so we'll use the existing file.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/site-opts.d/http.conf already exists, so we'll use the existing file.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/site-opts.d/https.conf already exists, so we'll use the existing file.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/sites-available/ssl-full already exists, so we'll use the existing file.
+app-1       | ℹ️ NOTICE (init-webserver-config): /etc/nginx/conf.d/default.conf already exists, so we'll use the provided configuration.
+app-1       | ❌ laravel-automations: Could not detect Laravel installation.
+app-1       | ℹ️  Check that the application is installed in /var/www/html
+Gracefully stopping... (press Ctrl+C again to force)
+dependency failed to start: container notes-app-app-1 is unhealthy
