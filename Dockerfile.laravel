@@ -1,0 +1,15 @@
+FROM serversideup/php:8.4-fpm-nginx
+
+ENV SSL_MODE=off \
+    AUTORUN_ENABLED=true \
+    AUTORUN_LARAVEL_MIGRATION=true \
+    AUTORUN_LARAVEL_STORAGE_LINK=false
+
+WORKDIR /var/www/html
+
+USER root
+COPY --chown=www-data:www-data . .
+RUN chmod -R ug+rwX storage bootstrap/cache
+USER www-data
+
+EXPOSE 8080
