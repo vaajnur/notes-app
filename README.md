@@ -14,6 +14,17 @@ docker compose up --build
 - Swagger UI: `http://localhost:8080/api/docs`;
 - OpenAPI-файл: `http://localhost:8080/docs/openapi.yaml`.
 
+Команда рассчитана на Docker Desktop в Windows, macOS и Linux. В Windows
+запускайте её из PowerShell или WSL в каталоге проекта:
+
+```bash
+docker compose up --build
+```
+
+Если это первый запуск или после изменения `composer.lock` зависимости
+пересобираются внутри контейнера. Если Docker Desktop ранее создал старые
+контейнеры, выполните `docker compose down` и затем повторите команду выше.
+
 Compose запускает Laravel на PHP 8.4, Vue/Vite на Node 18, MySQL 8.4 и внешний
 Nginx reverse proxy. Исходники подключены как bind volumes, поэтому изменения PHP,
 Vue, Blade и CSS применяются в режиме разработки без пересборки образов.

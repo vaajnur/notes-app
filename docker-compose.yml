@@ -9,7 +9,8 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      # TCP check is reliable across Docker Desktop and Linux Docker engines.
+      test: ["CMD-SHELL", "MYSQL_PWD=$${MYSQL_ROOT_PASSWORD} mysqladmin ping -h 127.0.0.1 -uroot --protocol=TCP --silent"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -38,6 +39,9 @@ services:
       AUTORUN_LARAVEL_MIGRATION: "true"
       AUTORUN_LARAVEL_STORAGE_LINK: "false"
     volumes:
+      # Keep vendor and the Laravel bootstrap files from the image. Mounting
+      # only source directories avoids hiding them on Docker Desktop for
+      # Windows while still preserving live code reloads.
       - ./app:/var/www/html/app
       - ./config:/var/www/html/config
       - ./database:/var/www/html/database
@@ -65,6 +69,7 @@ services:
     environment:
       VITE_DEV_SERVER_URL: http://localhost:8080
       VITE_HMR_PORT: 8080
+      CHOKIDAR_USEPOLLING: "true"
     volumes:
       - .:/app
       - node-modules:/app/node_modules
